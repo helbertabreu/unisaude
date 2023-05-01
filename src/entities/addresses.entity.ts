@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("addresses")
 class Address {
@@ -6,12 +6,12 @@ class Address {
   id: string;
 
   @Column({ length: 8 })
-  zip_code: number;
+  zip_code: string;
 
   @Column({ length: 72 })
   street: string;
 
-  @Column({ length: 15 })
+  @Column()
   number: number;
 
   @Column({ length: 72 })
