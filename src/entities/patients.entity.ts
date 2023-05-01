@@ -45,4 +45,9 @@ class Patient {
 
   @Column({ length: 128 })
   password: string;
+
+  @BeforeInsert()
+  hashPassword() {
+    this.password = hashSync(this.password, 10);
+  }
 }
