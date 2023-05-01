@@ -28,11 +28,14 @@ class Patient {
   @Column({ length: 72, unique: true })
   email: string;
 
-  @Column({ length: 3 })
+  @Column()
   age: number;
 
   @Column({ length: 12 })
   phone: string;
+
+  @Column({ length: 72 })
+  genre: string;
 
   @Column({ length: 72 })
   mother: string;
@@ -40,14 +43,19 @@ class Patient {
   @Column({ length: 72, default: null })
   father: string;
 
-  @Column({ length: 3 })
+  @Column({ length: 3, default: null })
   blood_type: string;
 
   @Column({ length: 128 })
   password: string;
+
+  @Column({ default: true })
+  isActive: boolean;
 
   @BeforeInsert()
   hashPassword() {
     this.password = hashSync(this.password, 10);
   }
 }
+
+export default Patient;
