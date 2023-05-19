@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createPatientsController,
   deletePatientController,
+  listPatientByIdController,
   listPatientsController,
   updatePatientController,
 } from "../controllers/patients.controllers";
@@ -16,5 +17,6 @@ patientsRouter.post(
   createPatientsController
 );
 patientsRouter.get("", listPatientsController);
+patientsRouter.get("/:id", listPatientByIdController);
 patientsRouter.delete("/:id", deletePatientController);
 patientsRouter.patch("/:id", updatePatientController);
