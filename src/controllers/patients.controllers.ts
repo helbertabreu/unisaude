@@ -12,7 +12,6 @@ export const createPatientsController = async (req: Request, res: Response) => {
 };
 
 export const listPatientsController = async (req: Request, res: Response) => {
-  console.log("aqui");
   const patients = await listPatientsService();
 
   return res.status(200).json(patients);
@@ -26,7 +25,7 @@ export const deletePatientController = async (req: Request, res: Response) => {
 };
 
 export const updatePatientController = async (req: Request, res: Response) => {
-  const patientId: any = req.patient;
+  const patientId: string = req.params.id;
   const patientData = req.body;
 
   const updatedPatient = await updatePatientService(patientData, patientId);

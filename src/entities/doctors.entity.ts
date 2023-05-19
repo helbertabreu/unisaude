@@ -31,6 +31,9 @@ class Doctor {
   @Column({ length: 128 })
   password: string;
 
+  @Column({ default: true })
+  isActive: boolean;
+
   @BeforeInsert()
   hashPassword() {
     this.password = hashSync(this.password, 10);

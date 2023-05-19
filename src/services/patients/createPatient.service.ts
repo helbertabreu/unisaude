@@ -10,18 +10,30 @@ import { patientReturnedSchema } from "../../schemas/patients/patients.schema";
 const createPatientService = async (
   patientData: IPatientExpressRequest
 ): Promise<IPatientReturned> => {
-  const { cpf, email, age } = patientData;
+  // const { cpf, email, age } = patientData;
 
   const patientRepository = AppDataSource.getRepository(Patient);
 
-  if (age < 18) {
+  const cpf: boolean = await patientRepository.exist({
+    where: { cpf: patientData.cpf },
+  });
+
+  const email: boolean = await patientRepository.exist({
+    where: { email: patientData.email },
+  });
+
+  if (patientData.age < 18) {
     throw new AppError(401, "You need add a Tutor for continue.");
   }
 
-  const patient = await patientRepository.findOneBy({ email: email, cpf: cpf });
+  // const patient = await patientRepository.findOneBy({ email: email, cpf: cpf });
 
-  if (patient) {
-    throw new AppError(400, "Patient is already exists");
+  if (email) {
+    throw new AppError(400, "Email is already exists.");
+  }
+
+  if (cpf) {
+    throw new AppError(400, "Cpf is already exists.");
   }
 
   const newPatient = patientRepository.create(patientData);
