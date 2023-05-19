@@ -15,6 +15,12 @@ export interface IPatientExpressRequest {
   isActive: boolean;
 }
 
+export interface IPatient {
+  id: string;
+  name: string;
+  email: string;
+}
+
 export interface IPatientReturned {
   id: string;
   created_at: Date;
