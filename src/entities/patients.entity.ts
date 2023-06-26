@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   BeforeInsert,
+  BeforeUpdate,
 } from "typeorm";
 import { hashSync } from "bcrypt";
 
@@ -52,6 +53,7 @@ class Patient {
   @Column({ default: true })
   isActive: boolean;
 
+  @BeforeUpdate()
   @BeforeInsert()
   hashPassword() {
     this.password = hashSync(this.password, 10);
