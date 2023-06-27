@@ -10,7 +10,11 @@ import { specializationRequestSchema } from "../schemas/specializations/speciali
 
 export const specializationsRouter = Router();
 
-specializationsRouter.post("", createSpecializationController);
+specializationsRouter.post(
+  "",
+  ensureDataIsValidMiddleware(specializationRequestSchema),
+  createSpecializationController
+);
 specializationsRouter.get(
   "",
   ensureDataIsValidMiddleware(specializationRequestSchema),
